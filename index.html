@@ -1,1569 +1,365 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>UNITY IPTV | الاشتراكات</title>
-
-<meta name="description"
-content="UNITY IPTV - اشتراكات وخدمات مشاهدة رقمية">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plate Distributor | UNITY IPTV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
-
 :root{
-    --green:#20ef82;
-    --green-dark:#0b9e53;
-    --bg:#050806;
-    --card:rgba(255,255,255,.055);
-    --border:rgba(255,255,255,.10);
-    --text:#f5f7f6;
-    --muted:#929d97;
+  --bg:#050810; --bg2:#0a0f1d; --card:#0d1424; --border:#1c2740;
+  --cyan:#00e5ff; --magenta:#c026ff; --gold:#ffb020;
+  --text:#eef2ff; --sub:#8b96b8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+html,body{height:100%;}
 body{
-    font-family:"Cairo",sans-serif;
-    background:
-        radial-gradient(
-            circle at 15% 0%,
-            rgba(32,239,130,.13),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 60%,
-            rgba(32,239,130,.07),
-            transparent 28%
-        ),
-        var(--bg);
-    color:var(--text);
-    min-height:100vh;
+  background:var(--bg); color:var(--text);
+  font-family:'Cairo',sans-serif;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% -5%, rgba(0,229,255,.14), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 90% 10%, rgba(192,38,255,.12), transparent 60%);
+  overflow-x:hidden;
 }
+[dir="ltr"] body{font-family:'Cairo','Segoe UI',sans-serif;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer; border:none;}
 
-/* =========================
-   HEADER
-========================= */
-
-.header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(5,8,6,.78);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid rgba(255,255,255,.07);
+/* header */
+header{
+  position:sticky; top:0; z-index:40;
+  padding:calc(env(safe-area-inset-top,0px) + 14px) 18px 14px;
+  background:rgba(5,8,16,.75); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
 }
-
-.header-inner{
-    max-width:1250px;
-    margin:auto;
-    min-height:72px;
-    padding:0 20px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
+.brand{display:flex; align-items:center; gap:10px;}
 .logo{
-    text-decoration:none;
-    font-size:25px;
-    font-weight:800;
-    color:var(--green);
-    letter-spacing:.5px;
+  width:40px; height:40px; border-radius:10px; flex-shrink:0;
+  background:linear-gradient(135deg,var(--cyan),var(--magenta));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Orbitron',sans-serif; font-weight:800; color:#050810; font-size:16px;
+  box-shadow:0 0 22px rgba(0,229,255,.55);
+}
+.brand-name{font-family:'Orbitron',sans-serif; font-weight:800; font-size:15px; letter-spacing:.5px;}
+.brand-sub{font-size:11px; color:var(--sub);}
+.head-actions{display:flex; align-items:center; gap:8px;}
+.icon-btn{
+  width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+  background:var(--card); border:1px solid var(--border); transition:transform .15s, box-shadow .15s;
+}
+.icon-btn:hover{transform:translateY(-2px); box-shadow:0 0 16px rgba(0,229,255,.35);}
+.icon-btn svg{width:19px; height:19px;}
+#langBtn{
+  font-weight:800; font-size:12px; color:var(--cyan); width:auto; padding:0 12px; font-family:'Orbitron',sans-serif;
 }
 
-.logo span{
-    color:#fff;
+/* hero */
+.hero{padding:52px 18px 30px; text-align:center; position:relative;}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px; font-size:12px; color:var(--cyan);
+  border:1px solid rgba(0,229,255,.35); padding:6px 14px; border-radius:100px; margin-bottom:20px;
+  background:rgba(0,229,255,.06);
 }
-
-.header-button{
-    text-decoration:none;
-    color:#041108;
-    background:var(--green);
-    padding:10px 18px;
-    border-radius:12px;
-    font-weight:800;
-    transition:.2s;
+.pulse{width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan); animation:pulse 1.4s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1{
+  font-family:'Orbitron',sans-serif; font-weight:800; font-size:clamp(28px,7vw,50px); line-height:1.15;
+  background:linear-gradient(90deg,#fff, var(--cyan) 60%, var(--magenta));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  margin-bottom:14px;
 }
-
-.header-button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 25px rgba(32,239,130,.2);
+.hero p{color:var(--sub); max-width:520px; margin:0 auto; font-size:15px; line-height:1.8;}
+.counter-wrap{margin-top:34px; display:inline-flex; flex-direction:column; align-items:center; gap:4px;}
+.counter{
+  font-family:'Orbitron',sans-serif; font-weight:800; font-size:clamp(34px,9vw,56px);
+  color:var(--cyan); text-shadow:0 0 20px rgba(0,229,255,.65), 0 0 46px rgba(0,229,255,.35);
+  letter-spacing:1px;
 }
+.counter-label{font-size:12px; color:var(--sub);}
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    max-width:1100px;
-    margin:auto;
-    padding:80px 20px 45px;
-    text-align:center;
+/* credit banner */
+.credit-banner{
+  max-width:760px; margin:36px auto 0; padding:14px 20px; border-radius:14px;
+  background:linear-gradient(90deg, rgba(0,229,255,.08), rgba(192,38,255,.08));
+  border:1px solid var(--border); display:flex; align-items:center; justify-content:center; gap:10px;
+  font-size:13px; color:var(--text);
 }
+.credit-banner b{color:var(--gold);}
 
-.hero-label{
-    display:inline-block;
-    padding:7px 17px;
-    border:1px solid rgba(32,239,130,.28);
-    background:rgba(32,239,130,.07);
-    color:var(--green);
-    border-radius:30px;
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:20px;
-}
-
-.hero h1{
-    font-size:clamp(38px,7vw,72px);
-    line-height:1.1;
-    font-weight:800;
-}
-
-.hero h1 span{
-    color:var(--green);
-}
-
-.hero p{
-    max-width:700px;
-    margin:22px auto 0;
-    color:var(--muted);
-    line-height:2;
-    font-size:16px;
-}
-
-.hero-buttons{
-    margin-top:28px;
-
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
-}
-
-.hero-button{
-    text-decoration:none;
-    padding:13px 24px;
-    border-radius:13px;
-    font-weight:800;
-    transition:.2s;
-}
-
-.primary{
-    background:var(--green);
-    color:#031007;
-}
-
-.secondary{
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.04);
-    color:white;
-}
-
-.hero-button:hover{
-    transform:translateY(-2px);
-}
-
-/* =========================
-   STATS
-========================= */
-
-.stats{
-    max-width:900px;
-    margin:40px auto 0;
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.stat{
-    padding:20px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    backdrop-filter:blur(15px);
-}
-
-.stat-number{
-    color:var(--green);
-    font-size:26px;
-    font-weight:800;
-}
-
-.stat-text{
-    color:var(--muted);
-    font-size:13px;
-    margin-top:3px;
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.container{
-    max-width:1250px;
-    margin:auto;
-    padding:20px;
-}
-
-.section{
-    margin:55px 0;
-}
-
-.section-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.section-title{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.section-title h2{
-    font-size:24px;
-}
-
-.price-badge{
-    background:var(--green);
-    color:#031007;
-    padding:4px 12px;
-    border-radius:30px;
-    font-size:13px;
-    font-weight:800;
-}
-
-.search{
-    width:100%;
-    max-width:400px;
-    margin-bottom:18px;
-    padding:13px 16px;
-
-    background:rgba(255,255,255,.045);
-    border:1px solid var(--border);
-    border-radius:13px;
-
-    color:white;
-    font-family:inherit;
-    outline:none;
-}
-
-.search:focus{
-    border-color:rgba(32,239,130,.5);
-}
-
+/* grid */
+.section-title{text-align:center; margin:52px 0 26px; padding:0 18px;}
+.section-title h2{font-family:'Orbitron',sans-serif; font-weight:800; font-size:clamp(20px,5vw,28px);}
+.section-title p{color:var(--sub); font-size:13px; margin-top:6px;}
 .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-    gap:13px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:16px; padding:0 18px 60px; max-width:1280px; margin:0 auto;
+}
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px;
+  display:flex; flex-direction:column; gap:10px; position:relative; overflow:hidden;
+}
+.card::before{
+  content:""; position:absolute; inset:0; border-radius:16px; padding:1px;
+  background:linear-gradient(135deg, rgba(0,229,255,.3), transparent 40%, rgba(192,38,255,.25));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;
+}
+.card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:8px;}
+.card-name{font-family:'Orbitron',sans-serif; font-weight:700; font-size:16px;}
+.badge{
+  font-size:10.5px; font-weight:800; color:var(--gold); border:1px solid rgba(255,176,32,.4);
+  background:rgba(255,176,32,.08); padding:3px 8px; border-radius:100px; white-space:nowrap;
+}
+.card-desc{font-size:12.5px; color:var(--sub); line-height:1.7; min-height:44px;}
+.card-bottom{display:flex; align-items:center; justify-content:space-between; margin-top:4px;}
+.price{font-family:'Orbitron',sans-serif; font-weight:800; font-size:22px; color:var(--cyan);}
+.price span{font-size:12px; color:var(--sub); font-weight:600;}
+.order-btn{
+  padding:9px 16px; border-radius:10px; font-weight:800; font-size:12.5px; color:#050810;
+  background:linear-gradient(90deg,var(--cyan),var(--magenta));
+  box-shadow:0 0 16px rgba(0,229,255,.3);
 }
 
-/* =========================
-   PRODUCT
-========================= */
-
-.product{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.07),
-            rgba(255,255,255,.025)
-        );
-
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:17px;
-
-    backdrop-filter:blur(15px);
-
-    transition:
-        transform .2s,
-        border-color .2s,
-        box-shadow .2s;
+/* modal */
+.overlay{
+  position:fixed; inset:0; background:rgba(2,4,10,.75); backdrop-filter:blur(6px);
+  display:none; align-items:center; justify-content:center; z-index:100; padding:18px;
+}
+.overlay.open{display:flex;}
+.modal{
+  background:var(--bg2); border:1px solid var(--border); border-radius:18px; padding:24px;
+  max-width:360px; width:100%; text-align:center;
+}
+.modal h3{font-family:'Orbitron',sans-serif; font-size:16px; margin-bottom:4px;}
+.modal p{color:var(--sub); font-size:12.5px; margin-bottom:18px;}
+.platforms{display:flex; justify-content:center; gap:16px; margin-bottom:14px;}
+.plat{
+  display:flex; flex-direction:column; align-items:center; gap:8px; width:80px; padding:12px 6px;
+  border-radius:14px; background:var(--card); border:1px solid var(--border); transition:transform .15s;
+}
+.plat:hover{transform:translateY(-3px);}
+.plat .circ{width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+.plat .circ svg{width:22px; height:22px;}
+.plat span{font-size:11px; color:var(--sub);}
+.close-x{
+  position:absolute; top:14px; inset-inline-end:14px; width:30px; height:30px; border-radius:50%;
+  background:var(--card); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--sub);
 }
 
-.product:hover{
-    transform:translateY(-4px);
-    border-color:rgba(32,239,130,.35);
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
-}
-
-.product-name{
-    font-size:15px;
-    font-weight:800;
-    min-height:45px;
-
-    display:flex;
-    align-items:center;
-}
-
-.product-price{
-    color:var(--green);
-    font-size:13px;
-    margin-bottom:10px;
-}
-
-.product-select{
-    width:100%;
-    padding:9px;
-
-    border:1px solid rgba(255,255,255,.09);
-    background:#0a100c;
-    color:white;
-
-    border-radius:10px;
-    font-family:inherit;
-    cursor:pointer;
-    outline:none;
-}
-
-.product-button{
-    width:100%;
-    margin-top:9px;
-    padding:10px;
-
-    border:0;
-    border-radius:10px;
-
-    background:var(--green);
-    color:#031007;
-
-    font-family:inherit;
-    font-weight:800;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.product-button:hover{
-    background:#42f596;
-}
-
-.discount-note{
-    color:#758079;
-    font-size:10px;
-    margin-top:9px;
-    display:block;
-    text-align:center;
-}
-
-/* =========================
-   OFFER
-========================= */
-
-.offer{
-    margin:60px auto;
-    padding:30px;
-
-    max-width:900px;
-
-    border:1px solid rgba(32,239,130,.18);
-    border-radius:24px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(32,239,130,.09),
-            rgba(255,255,255,.025)
-        );
-
-    text-align:center;
-}
-
-.offer h2{
-    color:var(--green);
-    margin-bottom:8px;
-}
-
-.offer p{
-    color:var(--muted);
-}
-
-.offer-list{
-    margin-top:20px;
-
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.offer-item{
-    padding:9px 15px;
-    border-radius:10px;
-    background:rgba(255,255,255,.05);
-    border:1px solid var(--border);
-}
-
-/* =========================
-   PAYMENT
-========================= */
-
-.payment{
-    max-width:850px;
-    margin:70px auto;
-
-    padding:30px;
-
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:24px;
-
-    backdrop-filter:blur(20px);
-}
-
-.payment h2{
-    text-align:center;
-}
-
-.payment-description{
-    text-align:center;
-    color:var(--muted);
-    margin:8px auto 25px;
-}
-
-.payment-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.payment-card{
-    background:#090e0b;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:15px;
-    padding:20px;
-    text-align:center;
-}
-
-.payment-card strong{
-    display:block;
-    color:var(--green);
-    margin-bottom:8px;
-}
-
-.payment-id{
-    color:#c3cbc6;
-    font-size:13px;
-    word-break:break-all;
-}
-
-.payment-contact{
-    display:block;
-    text-decoration:none;
-    text-align:center;
-
-    margin-top:18px;
-    padding:14px;
-
-    background:var(--green);
-    color:#031007;
-
-    border-radius:13px;
-    font-weight:800;
-}
-
-/* =========================
-   ORDER
-========================= */
-
-.order{
-    display:none;
-
-    max-width:650px;
-    margin:50px auto;
-
-    padding:30px;
-
-    background:
-        rgba(7,14,10,.9);
-
-    border:1px solid rgba(32,239,130,.2);
-    border-radius:24px;
-
-    box-shadow:0 25px 80px rgba(0,0,0,.35);
-}
-
-.order.active{
-    display:block;
-    animation:showOrder .3s ease;
-}
-
-@keyframes showOrder{
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.order h2{
-    color:var(--green);
-    margin-bottom:8px;
-}
-
-.selected-product{
-    padding:15px;
-    margin:15px 0;
-
-    background:rgba(255,255,255,.04);
-    border-radius:13px;
-
-    color:#d7ddd9;
-    line-height:2;
-}
-
-.form-label{
-    display:block;
-    margin:15px 0 7px;
-    font-size:14px;
-    font-weight:700;
-}
-
-.form-input,
-.form-select{
-    width:100%;
-    padding:14px;
-
-    border:1px solid rgba(255,255,255,.10);
-    background:#080d0a;
-
-    color:white;
-    border-radius:12px;
-
-    font-family:inherit;
-    outline:none;
-}
-
-.form-input:focus,
-.form-select:focus{
-    border-color:rgba(32,239,130,.5);
-}
-
-.final-price{
-    margin-top:18px;
-    padding:17px;
-
-    text-align:center;
-
-    color:var(--green);
-    font-size:23px;
-    font-weight:800;
-
-    background:rgba(32,239,130,.06);
-    border:1px solid rgba(32,239,130,.14);
-    border-radius:13px;
-}
-
-.discount-info{
-    text-align:center;
-    color:#7f8983;
-    font-size:12px;
-    margin-top:7px;
-}
-
-.submit{
-    width:100%;
-    margin-top:18px;
-    padding:14px;
-
-    border:0;
-    border-radius:12px;
-
-    background:var(--green);
-    color:#031007;
-
-    font-family:inherit;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.whatsapp{
-    display:block;
-    margin-top:10px;
-    padding:13px;
-
-    text-align:center;
-    text-decoration:none;
-
-    border:1px solid rgba(32,239,130,.2);
-    color:var(--green);
-
-    border-radius:12px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
+/* footer */
 footer{
-    margin-top:80px;
-    padding:35px 20px;
-
-    text-align:center;
-
-    border-top:1px solid rgba(255,255,255,.07);
-
-    color:#69736d;
-    font-size:13px;
+  border-top:1px solid var(--border); padding:34px 18px calc(env(safe-area-inset-bottom,0px) + 30px);
+  text-align:center; color:var(--sub); font-size:12px;
 }
+footer .fchan{display:flex; justify-content:center; gap:12px; margin-bottom:16px;}
+footer .fbrand{font-family:'Orbitron',sans-serif; color:var(--text); font-weight:800; font-size:13px; margin-bottom:6px;}
 
-.footer-logo{
-    color:var(--green);
-    font-size:20px;
-    font-weight:800;
-    margin-bottom:8px;
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){--bg:#050810;}
 }
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:700px){
-
-    .header-inner{
-        min-height:64px;
-    }
-
-    .logo{
-        font-size:21px;
-    }
-
-    .header-button{
-        padding:8px 12px;
-        font-size:12px;
-    }
-
-    .hero{
-        padding-top:55px;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .section-header{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-    }
-
-    .payment-grid{
-        grid-template-columns:1fr;
-    }
-
-    .payment{
-        padding:20px;
-    }
-
-}
-
-@media(max-width:400px){
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
 </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-
-<header class="header">
-
-    <div class="header-inner">
-
-        <a href="#" class="logo">
-            UNITY <span>IPTV</span>
-        </a>
-
-        <a
-            href="https://wa.me/6289679190535"
-            target="_blank"
-            class="header-button">
-            التواصل
-        </a>
-
+<header>
+  <div class="brand">
+    <div class="logo">PD</div>
+    <div>
+      <div class="brand-name">Plate Distributor</div>
+      <div class="brand-sub">UNITY IPTV</div>
     </div>
-
+  </div>
+  <div class="head-actions">
+    <a class="icon-btn" href="https://t.me/UNITY_IPTV" target="_blank" title="Telegram" style="color:#29a9eb">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6 18.7 20c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9L18 6.8c.5-.4-.1-.6-.7-.3L6.3 13.2 1.5 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.6Z"/></svg>
+    </a>
+    <a class="icon-btn" href="https://whatsapp.com/channel/0029Vb99HvUL2AU3aal7gN3l" target="_blank" title="WhatsApp" style="color:#25d366">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>
+    </a>
+    <a class="icon-btn" href="https://www.facebook.com/profile.php?id=61585336119331" target="_blank" title="Messenger" style="color:#0084ff">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.1 2 11.4c0 2.9 1.4 5.5 3.6 7.3V22l3.3-1.8c.9.2 1.9.4 3 .4 5.5 0 10-4.1 10-9.4C22 6.1 17.5 2 12 2Zm1 12.6-2.6-2.7-5 2.7 5.5-5.8 2.6 2.7 5-2.7-5.5 5.8Z"/></svg>
+    </a>
+    <button class="icon-btn" id="langBtn">EN</button>
+  </div>
 </header>
 
-
-<!-- HERO -->
-
 <section class="hero">
-
-    <div class="hero-label">
-        عرض خاص
-    </div>
-
-    <h1>
-        جميع الاشتراكات<br>
-        <span>في مكان واحد</span>
-    </h1>
-
-    <p>
-        اختر الخدمة المناسبة، حدد مدة الاشتراك،
-        ثم أكمل عملية الدفع والتواصل لإرسال بيانات الاشتراك
-        إلى بريدك الإلكتروني بعد التحقق من الدفع.
-    </p>
-
-    <div class="hero-buttons">
-
-        <a href="#subscriptions"
-           class="hero-button primary">
-            مشاهدة الاشتراكات
-        </a>
-
-        <a
-            href="https://wa.me/6289679190535"
-            target="_blank"
-            class="hero-button secondary">
-            التواصل معنا
-        </a>
-
-    </div>
-
-
-    <div class="stats">
-
-        <div class="stat">
-            <div class="stat-number">90+</div>
-            <div class="stat-text">
-                خدمة ومنتج متاح
-            </div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-number">3</div>
-            <div class="stat-text">
-                خطط للمدة
-            </div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-number">24/7</div>
-            <div class="stat-text">
-                استقبال الطلبات
-            </div>
-        </div>
-
-    </div>
-
+  <div class="eyebrow"><span class="pulse"></span><span data-t="live">متصل الآن</span></div>
+  <h1 data-t="h1">لوحات IPTV احترافية للموزعين</h1>
+  <p data-t="hp">اختر لوحتك من بين أفضل السيرفرات، فعّل فورًا، وابدأ التوزيع بثقة مع دعم متواصل وجودة بث عالية.</p>
+  <div class="counter-wrap">
+    <div class="counter" id="counter">2300</div>
+    <div class="counter-label" data-t="clabel">طلب تم تنفيذه</div>
+  </div>
+  <div class="credit-banner">
+    <span data-t="cb">🔋 جميع اللوحات أدناه تأتي بـ</span> <b>400 Credit</b>
+  </div>
 </section>
 
+<div class="section-title">
+  <h2 data-t="stitle">اللوحات المتوفرة</h2>
+  <p data-t="ssub">السعر بالدولار — اضغط "اطلب الآن" لاختيار منصة التواصل</p>
+</div>
 
-<main class="container" id="subscriptions">
+<div class="grid" id="grid"></div>
 
-
-<!-- =========================
-     $15
-========================= -->
-
-<section class="section">
-
-    <div class="section-header">
-
-        <div class="section-title">
-
-            <h2>اشتراكات سنة</h2>
-
-            <span class="price-badge">
-                15 دولار
-            </span>
-
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="close-x" id="closeModal">✕</button>
+    <h3 data-t="mtitle">اختر منصة الطلب</h3>
+    <p id="modalProduct"></p>
+    <div class="platforms">
+      <a class="plat" id="platWa" target="_blank">
+        <div class="circ" style="background:rgba(37,211,102,.12); color:#25d366">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>
         </div>
-
+        <span>WhatsApp</span>
+      </a>
+      <a class="plat" id="platTg" target="_blank">
+        <div class="circ" style="background:rgba(41,169,235,.12); color:#29a9eb">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6 18.7 20c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9L18 6.8c.5-.4-.1-.6-.7-.3L6.3 13.2 1.5 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.6Z"/></svg>
+        </div>
+        <span>Telegram</span>
+      </a>
+      <a class="plat" id="platMs" target="_blank">
+        <div class="circ" style="background:rgba(0,132,255,.12); color:#0084ff">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.1 2 11.4c0 2.9 1.4 5.5 3.6 7.3V22l3.3-1.8c.9.2 1.9.4 3 .4 5.5 0 10-4.1 10-9.4C22 6.1 17.5 2 12 2Zm1 12.6-2.6-2.7-5 2.7 5.5-5.8 2.6 2.7 5-2.7-5.5 5.8Z"/></svg>
+        </div>
+        <span>Messenger</span>
+      </a>
     </div>
-
-    <input
-        class="search"
-        type="search"
-        placeholder="البحث عن اشتراك..."
-        oninput="filterProducts(this,'products15')"
-    >
-
-    <div class="grid" id="products15"></div>
-
-</section>
-
-
-<!-- =========================
-     $14
-========================= -->
-
-<section class="section">
-
-    <div class="section-header">
-
-        <div class="section-title">
-
-            <h2>اشتراكات سنة</h2>
-
-            <span class="price-badge">
-                14 دولار
-            </span>
-
-        </div>
-
-    </div>
-
-    <input
-        class="search"
-        type="search"
-        placeholder="البحث عن اشتراك..."
-        oninput="filterProducts(this,'products14')"
-    >
-
-    <div class="grid" id="products14"></div>
-
-</section>
-
-
-<!-- =========================
-     $12
-========================= -->
-
-<section class="section">
-
-    <div class="section-header">
-
-        <div class="section-title">
-
-            <h2>المشغلات والتطبيقات</h2>
-
-            <span class="price-badge">
-                12 دولار
-            </span>
-
-        </div>
-
-    </div>
-
-    <input
-        class="search"
-        type="search"
-        placeholder="البحث عن مشغل..."
-        oninput="filterProducts(this,'products12')"
-    >
-
-    <div class="grid" id="products12"></div>
-
-</section>
-
-
-<!-- =========================
-     OFFERS
-========================= -->
-
-<section class="offer">
-
-    <h2>خصومات المدة</h2>
-
-    <p>
-        اختر مدة أطول للحصول على السعر المخفض.
-    </p>
-
-    <div class="offer-list">
-
-        <div class="offer-item">
-            سنة واحدة — السعر الكامل
-        </div>
-
-        <div class="offer-item">
-            سنتان — خصم 10%
-        </div>
-
-        <div class="offer-item">
-            3 سنوات — خصم 30%
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     PAYMENT
-========================= -->
-
-<section class="payment">
-
-    <h2>
-        طرق الدفع
-    </h2>
-
-    <p class="payment-description">
-        بعد اختيار المنتج، استخدم إحدى طرق الدفع
-        ثم تواصل معنا لتأكيد العملية.
-    </p>
-
-    <div class="payment-grid">
-
-        <div class="payment-card">
-
-            <strong>Binance</strong>
-
-            <div class="payment-id">
-                1198204565
-            </div>
-
-        </div>
-
-
-        <div class="payment-card">
-
-            <strong>Bybit</strong>
-
-            <div class="payment-id">
-                547918829
-            </div>
-
-        </div>
-
-
-        <div class="payment-card">
-
-            <strong>RedotPay</strong>
-
-            <div class="payment-id">
-                1553954270
-            </div>
-
-        </div>
-
-    </div>
-
-    <a
-        class="payment-contact"
-        href="https://wa.me/6289679190535"
-        target="_blank">
-
-        جميع طرق الدفع العالمية والتواصل
-
-    </a>
-
-</section>
-
-
-<!-- =========================
-     ORDER
-========================= -->
-
-<section class="order" id="order">
-
-    <h2>
-        إتمام الطلب
-    </h2>
-
-    <div
-        class="selected-product"
-        id="selectedProduct">
-    </div>
-
-
-    <label class="form-label">
-        مدة الاشتراك
-    </label>
-
-    <select
-        class="form-select"
-        id="years"
-        onchange="updatePrice()">
-
-        <option value="1">
-            سنة واحدة — السعر الكامل
-        </option>
-
-        <option value="2">
-            سنتان — خصم 10%
-        </option>
-
-        <option value="3">
-            3 سنوات — خصم 30%
-        </option>
-
-    </select>
-
-
-    <div
-        class="final-price"
-        id="finalPrice">
-
-        السعر: $0.00
-
-    </div>
-
-    <div class="discount-info">
-
-        يتم تطبيق الخصم تلقائياً حسب مدة الاشتراك.
-
-    </div>
-
-
-    <label class="form-label">
-        البريد الإلكتروني
-    </label>
-
-    <input
-        class="form-input"
-        type="email"
-        id="email"
-        placeholder="example@email.com"
-        autocomplete="email"
-    >
-
-
-    <button
-        class="submit"
-        onclick="submitOrder()">
-
-        متابعة الطلب
-
-    </button>
-
-
-    <a
-        class="whatsapp"
-        href="https://wa.me/6289679190535"
-        target="_blank">
-
-        التواصل عبر WhatsApp
-
-    </a>
-
-</section>
-
-</main>
-
-
-<!-- FOOTER -->
+  </div>
+</div>
 
 <footer>
-
-    <div class="footer-logo">
-        UNITY IPTV
-    </div>
-
-    <div>
-        خدمات الاشتراكات الرقمية
-    </div>
-
-    <div style="margin-top:8px;">
-        © 2026 UNITY IPTV
-    </div>
-
+  <div class="fbrand">Plate Distributor · UNITY IPTV</div>
+  <div class="fchan">
+    <a class="icon-btn" href="https://t.me/UNITY_IPTV" target="_blank" style="color:#29a9eb">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M21.9 4.6 18.7 20c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9L18 6.8c.5-.4-.1-.6-.7-.3L6.3 13.2 1.5 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.6Z"/></svg>
+    </a>
+    <a class="icon-btn" href="https://whatsapp.com/channel/0029Vb99HvUL2AU3aal7gN3l" target="_blank" style="color:#25d366">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>
+    </a>
+  </div>
+  <div data-t="frights">جميع الحقوق محفوظة © Plate Distributor — UNITY IPTV</div>
 </footer>
 
-
 <script>
-
-/* =========================
-   PRODUCTS
-========================= */
-
-const products15 = [
-"TREX",
-"PURE",
-"STRONG 8K",
-"NEO 4K",
-"4K MATIC",
-"PROMAX OTT",
-"BENO 4K",
-"TANGO PRO",
-"TOP 4K",
-"KING 365",
-"DREAM 4K",
-"DLTA 4K",
-"EAGLE 4K",
-"IRON TV PRO",
-"LYNX",
-"ATLAS PRO",
-"GOGO",
-"JUPITER",
-"DAR PRO",
-"PYTHON",
-"MAX 4K",
-"DINO",
-"FAMILY 4K",
-"LION OTT",
-"WOLF OTT",
-"PRO SAT",
-"ESIPTV",
-"AVATAR 4K",
-"ORCA PRO+",
-"MMTV",
-"HOOK TV",
-"BLUE 4K",
-"MY HD",
-"VIPER 4K",
-"WIN+",
-"PLUME 4K",
-"MAX OTT",
-"NEXON",
-"SMART TV+",
-"ALKACER",
-"TEMU VIP",
-"SHOOTERS OTT",
-"AROMA 4K",
-"CRYSTAL OTT",
-"IVTV",
-"LUNA 4K",
-"PRINCE TV PRO",
-"PIXEL TV",
-"EON+ VIP",
-"FORMULA TV",
-"GOLDEN OTT",
-"FUEGO TV",
-"SPIDER OTT 4K",
-"SS TV",
-"SCREEN TV",
-"MEGA OTT",
-"MISTER",
-"BLACK TV",
-"BLUZ PLAY",
-"TS 4K",
-"INFINITY OTT",
-"AMIGO 4K",
-"LYDEX TV",
-"SUP TV",
-"HFM OTT PLUS",
-"TIVI ONE OTT",
-"ULTRA 8K OTT",
-"SL TV",
-"PLUTON OTT",
-"SONIC TV",
-"EXTRA OTT",
-"MATADOR",
-"AURORA TV",
-"FOREVER TV",
-"SANSAT",
-"KDMAX"
+const PRODUCTS = [
+ ["Foxx",280],["King 365",220],["Infinity",200],["Trex",190],["Strong",185],
+ ["Pluton",170],["4K OTT (Pro Max)",180],["Kemo",165],["Ultra 8K",160],["B1g",120],
+ ["Édition",140],["Diamond",155],["Tivi One",185],["King Cobra",120],["SL TV",140],
+ ["Dream 4K",140],["Eagle 4K",140],["MAX",95],["King Pro",75],["Dino",95],
+ ["Lion OTT",95],["Crystal",95],["Extra OTT",85],["MegaOTT",85],["Play+",85],
+ ["Magnum",120],["Gold OTT",130],["Python",80],["Fuego",80],["Eagle",80],
+ ["Atlas Pro",110],["Iron",135],["Zen4K",110],["Dream TV",105],["Porche",90],
+ ["Smart+",95],["Noe",95],["Plum 4K",80]
 ];
 
+const DESC = {
+ ar:[
+  "لوحة تحكم قوية لإدارة اشتراكات IPTV بثبات عالي وسرعة تفعيل فورية.",
+  "خوادم مستقرة ودعم فني متواصل، مثالية لتوسيع نشاطك التجاري.",
+  "تفعيل سريع وجودة بث ممتازة مع توافق كامل مع جميع الأجهزة.",
+  "الخيار الأمثل للموزعين الباحثين عن الجودة والاستقرار بسعر منافس.",
+  "دعم متعدد الأجهزة وتحديثات مستمرة وأداء مضمون على مدار الساعة.",
+  "حلول احترافية لإدارة قنواتك مع ضمان الجودة والسرعة في التفعيل."
+ ],
+ en:[
+  "A powerful control panel for managing IPTV subscriptions with high stability and instant activation.",
+  "Stable servers and continuous technical support, ideal for growing your business.",
+  "Fast activation and excellent streaming quality, fully compatible with all devices.",
+  "The top choice for resellers seeking quality and stability at a competitive price.",
+  "Multi-device support, constant updates, and guaranteed 24/7 performance.",
+  "Professional solutions to manage your channels with guaranteed quality and fast setup."
+ ]
+};
 
-const products14 = [
-"TOD FULL HD",
-"TOD 4K",
-"NETFLIK",
-"PRIME VIDEO",
-"SHAHID VIP",
-"SHAHID VIP SPORT",
-"STARZPLAY SPORT",
-"STARZPLAY ULTIMATE",
-"STARZPLAY ENTERTAINMENT",
-"MAGMOVIE",
-"DISNEY+",
-"WATCH IT",
-"OSN+ 4K",
-"HULU",
-"CRUNCHYROLL"
-];
+const T = {
+ ar:{live:"متصل الآن", h1:"لوحات IPTV احترافية للموزعين",
+  hp:"اختر لوحتك من بين أفضل السيرفرات، فعّل فورًا، وابدأ التوزيع بثقة مع دعم متواصل وجودة بث عالية.",
+  clabel:"طلب تم تنفيذه", cb:"🔋 جميع اللوحات أدناه تأتي بـ", stitle:"اللوحات المتوفرة",
+  ssub:"السعر بالدولار — اضغط \"اطلب الآن\" لاختيار منصة التواصل",
+  order:"اطلب الآن", credit:"400 كريدت", mtitle:"اختر منصة الطلب",
+  frights:"جميع الحقوق محفوظة © Plate Distributor — UNITY IPTV", forproduct:"طلب لوحة:"},
+ en:{live:"Online now", h1:"Professional IPTV Panels for Resellers",
+  hp:"Pick your panel from our top servers, activate instantly, and start reselling with reliable support and premium streaming quality.",
+  clabel:"orders completed", cb:"🔋 All panels below include", stitle:"Available Panels",
+  ssub:"Prices in $ — tap \"Order Now\" to pick your contact platform",
+  order:"Order Now", credit:"400 Credit", mtitle:"Choose an order platform",
+  frights:"All rights reserved © Plate Distributor — UNITY IPTV", forproduct:"Order for:"}
+};
 
+let lang = 'ar';
+const grid = document.getElementById('grid');
 
-const products12 = [
-"IBO PLAYER",
-"IBO PLAYER PRO",
-"HOT PLAYER",
-"IBOSS PLAYER",
-"IBOXX PLAYER",
-"ABE PLAYER",
-"ALL PLAYER",
-"BOB PLAYER",
-"BOB PRO",
-"RIVOLUT PLAYER",
-"RELAX PLAYER",
-"FAMILY 4K PLAYER",
-"KING PRO PLAYER",
-"HUSH PLAY",
-"MAC MEDIA PLAYER",
-"DUPLEX TV",
-"FLIXNET",
-"VIRGINA TV",
-"IBOSOL PLAYER",
-"KTN PLAYER",
-"SMARTONEPRO",
-"IBO SMARTERS"
-];
-
-
-/* =========================
-   STATE
-========================= */
-
-let selectedName = "";
-let selectedBasePrice = 0;
-
-
-/* =========================
-   CREATE PRODUCTS
-========================= */
-
-function createProducts(list, containerId, price){
-
-    const container =
-        document.getElementById(containerId);
-
-    list.forEach(name => {
-
-        const card =
-            document.createElement("article");
-
-        card.className = "product";
-
-        card.dataset.name =
-            name.toLowerCase();
-
-        card.innerHTML = `
-
-            <div class="product-name">
-                ${escapeHTML(name)}
-            </div>
-
-            <div class="product-price">
-                ${price.toFixed(2)} دولار سنوياً
-            </div>
-
-            <select
-                class="product-select"
-                id="duration-${containerId}-${CSS.escape(name)}">
-
-                <option value="1">
-                    سنة واحدة
-                </option>
-
-                <option value="2">
-                    سنتان — خصم 10%
-                </option>
-
-                <option value="3">
-                    3 سنوات — خصم 30%
-                </option>
-
-            </select>
-
-            <button
-                class="product-button"
-                onclick="selectProduct('${escapeJS(name)}',${price},this)">
-
-                اختيار الاشتراك
-
-            </button>
-
-            <span class="discount-note">
-                خصم 10% لسنتين و30% لثلاث سنوات
-            </span>
-        `;
-
-        container.appendChild(card);
-
-    });
+function render(){
+  grid.innerHTML = '';
+  PRODUCTS.forEach((p,i)=>{
+    const [name, price] = p;
+    const desc = DESC[lang][i % DESC[lang].length];
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-name">${name}</div>
+        <div class="badge">${T[lang].credit}</div>
+      </div>
+      <div class="card-desc">${desc}</div>
+      <div class="card-bottom">
+        <div class="price">$${price}<span> USD</span></div>
+        <button class="order-btn" data-name="${name}">${T[lang].order}</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    el.textContent = T[lang][el.getAttribute('data-t')];
+  });
+  document.getElementById('langBtn').textContent = lang === 'ar' ? 'EN' : 'AR';
 }
 
-
-/* =========================
-   ESCAPE
-========================= */
-
-function escapeHTML(value){
-
-    return value
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-
-function escapeJS(value){
-
-    return value
-        .replace(/\\/g,"\\\\")
-        .replace(/'/g,"\\'");
-}
-
-
-/* =========================
-   INITIALIZE
-========================= */
-
-createProducts(
-    products15,
-    "products15",
-    15
-);
-
-createProducts(
-    products14,
-    "products14",
-    14
-);
-
-createProducts(
-    products12,
-    "products12",
-    12
-);
-
-
-/* =========================
-   SELECT PRODUCT
-========================= */
-
-function selectProduct(name,price,button){
-
-    selectedName = name;
-    selectedBasePrice = price;
-
-    const card =
-        button.closest(".product");
-
-    const duration =
-        card.querySelector(".product-select").value;
-
-    document.getElementById("years").value =
-        duration;
-
-    document.getElementById("order")
-        .classList.add("active");
-
-    updatePrice();
-
-    document.getElementById("order")
-        .scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-        });
-}
-
-
-/* =========================
-   PRICE CALCULATION
-========================= */
-
-function calculatePrice(){
-
-    const years =
-        Number(
-            document.getElementById("years").value
-        );
-
-    if(years === 1){
-
-        return selectedBasePrice;
-
-    }
-
-    if(years === 2){
-
-        return selectedBasePrice * 2 * 0.90;
-
-    }
-
-    if(years === 3){
-
-        return selectedBasePrice * 3 * 0.70;
-
-    }
-
-    return selectedBasePrice;
-}
-
-
-/* =========================
-   UPDATE PRICE
-========================= */
-
-function updatePrice(){
-
-    if(!selectedBasePrice){
-        return;
-    }
-
-    const years =
-        Number(
-            document.getElementById("years").value
-        );
-
-    const total =
-        calculatePrice();
-
-    let discountText =
-        "السعر الكامل";
-
-    if(years === 2){
-        discountText =
-            "تم تطبيق خصم 10%";
-    }
-
-    if(years === 3){
-        discountText =
-            "تم تطبيق خصم 30%";
-    }
-
-    document.getElementById("selectedProduct")
-        .innerHTML = `
-
-            المنتج:
-            <strong>${escapeHTML(selectedName)}</strong>
-
-            <br>
-
-            السعر السنوي:
-            <strong>$${selectedBasePrice.toFixed(2)}</strong>
-
-            <br>
-
-            المدة:
-            <strong>${years} ${years === 1 ? "سنة" : "سنوات"}</strong>
-
-            <br>
-
-            ${discountText}
-
-        `;
-
-    document.getElementById("finalPrice")
-        .textContent =
-        "السعر النهائي: $" +
-        total.toFixed(2);
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function filterProducts(input,containerId){
-
-    const value =
-        input.value.trim().toLowerCase();
-
-    const container =
-        document.getElementById(containerId);
-
-    const cards =
-        container.querySelectorAll(".product");
-
-    cards.forEach(card => {
-
-        const name =
-            card.dataset.name;
-
-        card.style.display =
-            name.includes(value)
-                ? ""
-                : "none";
-
-    });
-}
-
-
-/* =========================
-   SUBMIT
-========================= */
-
-function submitOrder(){
-
-    if(!selectedName){
-
-        alert(
-            "يرجى اختيار اشتراك أولاً."
-        );
-
-        return;
-    }
-
-    const email =
-        document.getElementById("email")
-            .value.trim();
-
-    if(!email){
-
-        alert(
-            "يرجى إدخال البريد الإلكتروني."
-        );
-
-        return;
-    }
-
-    const emailValid =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-            .test(email);
-
-    if(!emailValid){
-
-        alert(
-            "يرجى إدخال بريد إلكتروني صحيح."
-        );
-
-        return;
-    }
-
-    const years =
-        Number(
-            document.getElementById("years").value
-        );
-
-    const total =
-        calculatePrice();
-
-
-    const message =
-        "طلب جديد - UNITY IPTV\n\n" +
-
-        "المنتج: " +
-        selectedName + "\n" +
-
-        "المدة: " +
-        years + " سنة\n" +
-
-        "السعر: $" +
-        total.toFixed(2) + "\n\n" +
-
-        "البريد الإلكتروني: " +
-        email;
-
-
-    const whatsappURL =
-        "https://wa.me/6289679190535?text=" +
-        encodeURIComponent(message);
-
-
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
-}
-
+document.getElementById('langBtn').addEventListener('click', ()=>{
+  lang = lang === 'ar' ? 'en' : 'ar';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  render();
+});
+
+const overlay = document.getElementById('overlay');
+const modalProduct = document.getElementById('modalProduct');
+const platWa = document.getElementById('platWa');
+const platTg = document.getElementById('platTg');
+const platMs = document.getElementById('platMs');
+
+grid.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.order-btn');
+  if(!btn) return;
+  const name = btn.getAttribute('data-name');
+  modalProduct.textContent = `${T[lang].forproduct} ${name}`;
+  const msg = encodeURIComponent(`${lang==='ar' ? 'مرحبا، أرغب في طلب لوحة' : 'Hello, I would like to order the panel'} ${name}`);
+  platWa.href = `https://wa.me/6289679190535?text=${msg}`;
+  platTg.href = `https://t.me/DZ_AX?text=${msg}`;
+  platMs.href = `https://www.facebook.com/profile.php?id=61585336119331`;
+  overlay.classList.add('open');
+});
+
+document.getElementById('closeModal').addEventListener('click', ()=> overlay.classList.remove('open'));
+overlay.addEventListener('click', (e)=>{ if(e.target === overlay) overlay.classList.remove('open'); });
+
+let count = 2300;
+const counterEl = document.getElementById('counter');
+setInterval(()=>{
+  count += Math.floor(Math.random()*3)+1;
+  counterEl.textContent = count.toLocaleString('en-US');
+}, 10000);
+
+render();
 </script>
-
 </body>
-  </html>
+</html>
